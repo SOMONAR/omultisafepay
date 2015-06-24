@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityPermission description="View operations in the omultisafepay Component." permissionId="omultisafepay_VIEW"/>
+    <SecurityPermission description="Create operations in the omultisafepay Component." permissionId="omultisafepay_CREATE"/>
+    <SecurityPermission description="Update operations in the omultisafepay Component." permissionId="omultisafepay_UPDATE"/>
+    <SecurityPermission description="Delete operations in the omultisafepay Component." permissionId="omultisafepay_DELETE"/>
+    <SecurityPermission description="ALL operations in the omultisafepay Component." permissionId="omultisafepay_ADMIN"/>
+
+    <SecurityGroupPermission groupId="SUPER" permissionId="omultisafepay_ADMIN"/>
+
+</entity-engine-xml>

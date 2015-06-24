@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="omultisafepay_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="omultisafepay_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="omultisafepay_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="omultisafepay_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="omultisafepay_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="omultisafepay_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="omultisafepay_ADMIN"/>
+</entity-engine-xml>

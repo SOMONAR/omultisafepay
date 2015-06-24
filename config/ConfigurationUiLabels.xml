@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
+    
+    <property key="Configuration">
+        <value xml:lang="en">Configuration</value>
+        <value xml:lang="nl">Configuratie</value>
+    </property>
+    <property key="Gateway">
+        <value xml:lang="en">Gateway</value>
+    </property>
+    <property key="SystemProperty">
+        <value xml:lang="en">System Property</value>
+        <value xml:lang="nl">Configuratie-element</value>
+    </property>
+    <property key="SystemProperties">
+        <value xml:lang="en">System Properties</value>
+        <value xml:lang="nl">Configuratie-elementen</value>
+    </property>
+    <property key="NewSystemProperty">
+        <value xml:lang="en">New System Property</value>
+        <value xml:lang="nl">Nieuw configuratie-element </value>
+    </property>
+    
+    <property key="NewThemeResource">
+        <value xml:lang="en">New Theme Resource</value>
+        <value xml:lang="nl">Nieuw thema-element </value>
+    </property>
+    <property key="ThemeResource">
+        <value xml:lang="en">Theme Resource</value>
+        <value xml:lang="nl">Thema-element</value>
+    </property>
+    
+    <property key="ThemeResources">
+        <value xml:lang="en">Theme Resources</value>
+        <value xml:lang="nl">Thema-elementen</value>
+    </property>
+    
+</resource>
