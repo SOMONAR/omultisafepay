@@ -1,0 +1,69 @@
+.multisafepay-info { 
+    margin:0 0 0 0px; 
+    font-familly: Open Sans,Arial,sans-serif; 
+}
+
+.multisafepay-info img { 
+    display:block; 
+    margin: 20px 20px 20px 0px; 
+}
+.multisafepay{
+    margin-left:15px;
+    margin-right:15px;
+}
+    
+.multisafepay-info a {
+    color:#006d9d;
+}
+    
+.multisafepay-info a:hover {
+    color:black;
+}
+    
+.multisafepay-payement-info { 
+    width:400px; 
+    margin-bottom:20px; 
+    background: none repeat scroll 0 0 #E3E0D2; 
+    padding: 0 20px 20px; 
+    font-size: 15px;
+}
+
+
+.multisafepay-payement-info.left { 
+    float:left; 
+    margin-right:20px; 
+}
+
+.multisafepay-payement-info.right { 
+    float:left; 
+    margin-right:20px; 
+    text-align:left; 
+    min-height:182px;
+}
+
+.multisafepay-payement-info.right-full {
+    width:860px;
+    float:left;
+    min-height:266px;
+}
+
+.multisafepay-blue-button {
+        background: none repeat scroll 0 0 #00adef;
+        -moz-box-sizing: border-box;
+    border-radius: 3em 3em 3em 3em;
+        color: #FFFFFF !important;
+    cursor: pointer;
+        display: inline-block;
+        font-size: 1.25em;
+    height: 2em;
+        line-height: 2em;
+        padding: 0 1em;
+}
+
+.multisafepay-blue-button:hover {
+     color: #FFFFFF;
+     background: none repeat scroll 0 0 #006d9d;
+}
+#swifttagcontainer58vgtqrmbb{
+    background:#ffffff!important;
+}
