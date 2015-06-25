@@ -1,7 +1,9 @@
 ![OFBiz](http://ofbiz.apache.org/images/logo.png "Apache OFBiz")&nbsp;![MultiSafePay](https://www.multisafepay.com/images/multilogo.gif "MultiSafepay")
 
 # omultisafepay
-3rd party Payment Provider Integration Solution for MultiSafepay&trade; as a separate and optional hot-deploy component. This component enables you to configure your MultiSafepay integration and provides templates for inclusion in your OFBiz&trade; web store
+3rd party Payment Provider Integration Solution for MultiSafepay&trade; as a separate and optional hot-deploy component. This component enables you to configure your MultiSafepay integration and provides templates for inclusion in your OFBiz&trade; web store.
+
+For more information on MultiSafepay, visit [their site, here](http://www.multiSafepay.com).
 
 **MultiSafepay works with following acquirers:**
 
