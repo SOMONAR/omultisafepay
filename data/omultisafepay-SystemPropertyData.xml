@@ -79,6 +79,27 @@
         systemPropertyValue="/v1/json/orders"
         />
     
+    <SystemProperty 
+        systemPropertyId="defaultCancelUrl" 
+        description="MultiSafepay default store cancel url"  
+        systemResourceId="omultisafepay"
+        systemPropertyValue="?"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="defaultNotficationUrl" 
+        description="MultiSafepay default store cancel url"  
+        systemResourceId="omultisafepay"
+        systemPropertyValue="?"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="defaultRedirectUrl" 
+        description="MultiSafepay default storeredirect url"  
+        systemResourceId="omultisafepay"
+        systemPropertyValue="?"
+        />
+    
     <!-- Enablement of payment modules -->
     <SystemProperty
         systemPropertyId="multisafepay_banktrans.enable" 
