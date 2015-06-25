@@ -57,6 +57,22 @@
         <response name="success" type="view" value="systemproperties"/>
     </request-map>
     
+    <!-- Payment Gateway Config --> 
+    <request-map uri="FindPaymentGatewayConfig">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="FindPaymentGatewayConfig"/>
+    </request-map>
+    <request-map uri="EditPaymentGatewayConfig">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="EditPaymentGatewayConfig"/>
+    </request-map>
+    <request-map uri="UpdatePaymentGatewayConfig">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="updatePaymentGatewayConfigMultiSafepay"/>
+        <response name="success" type="view" value="EditPaymentGatewayConfig"/>
+        <response name="error" type="view" value="EditPaymentGatewayConfig"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://omultisafepay/widget/omultisafepay-Screens.xml#main"/>
     
@@ -65,5 +81,11 @@
     <view-map name="systemproperties" type="screen" page="component://omultisafepay/widget/ConfigurationScreens.xml#SystemProperties"/>
     <view-map name="newsystemproperty" type="screen" page="component://omultisafepay/widget/ConfigurationScreens.xml#NewSystemProperty"/>
     <view-map name="editsystemproperty" type="screen" page="component://omultisafepay/widget/ConfigurationScreens.xml#EditSystemProperty"/>
+    
+    <!-- Payment Gateway Config -->
+    <view-map name="FindPaymentGatewayConfig" page="component://omultisafepay//widget/PaymentGatewayConfigScreens.xml#FindPaymentGatewayConfig" type="screen"/>
+    <view-map name="EditPaymentGatewayConfig" page="component://omultisafepay//widget/PaymentGatewayConfigScreens.xml#EditPaymentGatewayConfig" type="screen"/>
+    <view-map name="FindPaymentGatewayConfigTypes" page="component://omultisafepay//widget/PaymentGatewayConfigScreens.xml#FindPaymentGatewayConfigTypes" type="screen"/>
+    <view-map name="EditPaymentGatewayConfigType" page="component://omultisafepay//widget/PaymentGatewayConfigScreens.xml#EditPaymentGatewayConfigType" type="screen"/>
     
 </site-conf>
