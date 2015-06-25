@@ -1,5 +1,5 @@
 # omultisafepay
-3rd party Payment Provider Integration Solution for MultiSafePay&trade; as a separate and optional hot-deploy component.
+3rd party Payment Provider Integration Solution for MultiSafepay&trade; as a separate and optional hot-deploy component.
 
 ##Development
 Just put the following in the svn:externals properties of the hot-deploy folder of your OFBiz implementation for a checkout:
