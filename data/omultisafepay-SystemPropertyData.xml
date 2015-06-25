@@ -4,7 +4,7 @@
     
     <SystemProperty 
         systemPropertyId="apiEnvironment" 
-        description="MultiSafepay Api Environment. Values are 'test' or 'production'" 
+        description="MultiSafepay Api Environment. Allowed value is: 'test' or 'production'" 
         systemResourceId="omultisafepay"
         systemPropertyValue="test"
         />
@@ -77,6 +77,20 @@
         description="MultiSafepay Request for testing purposes"  
         systemResourceId="omultisafepay"
         systemPropertyValue="/v1/json/orders"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="defaultCurrency" 
+        description="MultiSafepay default currency."  
+        systemResourceId="omultisafepay"
+        systemPropertyValue="EUR"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="defaultOrderType" 
+        description="MultiSafepay default order type.  Allowed value is: 'direct' or 'redirect'"  
+        systemResourceId="omultisafepay"
+        systemPropertyValue="direct"
         />
     
     <SystemProperty 
