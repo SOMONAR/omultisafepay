@@ -41,7 +41,7 @@
     <SystemProperty
     description="Mastercard enablement" 
     systemPropertyId="multisafepay_mastercard.enable" 
-    systemPropertyValue="0" 
+    systemPropertyValue="true" 
     systemResourceId="omultisafepay"/>
     
     <SystemProperty
@@ -53,13 +53,13 @@
     <SystemProperty
     description="Payment After enablement" 
     systemPropertyId="multisafepay_payafter.enable" 
-    systemPropertyValue="0" 
+    systemPropertyValue="true" 
     systemResourceId="omultisafepay"/>
     
     <SystemProperty
     description="Visa enablement" 
     systemPropertyId="multisafepay_visa.enable" 
-    systemPropertyValue="0" 
+    systemPropertyValue="true" 
     systemResourceId="omultisafepay"/>
     
     <!-- Fixed amount fees for transactions -->
