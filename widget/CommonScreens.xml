@@ -13,8 +13,8 @@
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.${activeApp}CompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.${activeApp}CompanySubtitle" global="true"/>
                 
-                <set field="layoutSettings.javaScripts[]" value="/${activeApp}/js/${activeApp}.js" global="true"/>
-                <set field="layoutSettings.styleSheets[]" value="/${activeApp}/css/${activeApp}.css" global="true"/>
+                <set field="layoutSettings.javaScripts[]" value="/${activeApp}/images/js/${activeApp}.js" global="true"/>
+                <set field="layoutSettings.styleSheets[]" value="/${activeApp}/images/css/${activeApp}.css" global="true"/>
                 
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://${activeApp}/widget/${activeApp}-Menus.xml" global="true"/>
