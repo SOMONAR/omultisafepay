@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-engine-xml>
-
+    
+    <PaymentGatewayConfigType paymentGatewayConfigTypeId="omultisafepay" hasTable="N" description="MultiSafepay Payment Gateway"/>
+    <PaymentGatewayConfig paymentGatewayConfigId="omultisafepay_CONFIG" paymentGatewayConfigTypeId="omultisafepay" description="MultiSafepay Config"/>
+    
 </entity-engine-xml>
