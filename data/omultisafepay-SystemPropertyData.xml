@@ -3,208 +3,244 @@
     <!-- Generic connect configuration -->
     
     <SystemProperty 
-        description="MultiSafepay apiProtocol for testing purposes" 
+        systemPropertyId="apiEnvironment" 
+        description="MultiSafepay Api Environment. Values are 'test' or 'production'" 
         systemResourceId="omultisafepay"
-        systemPropertyId="HostProtocol.test" 
+        systemPropertyValue="test"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="HostProtocol.production" 
+        description="MultiSafepay apiProtocol for production purposes" 
+        systemResourceId="omultisafepay"
         systemPropertyValue="https"
         />
     
     <SystemProperty 
+        systemPropertyId="HostProtocol.test" 
+        description="MultiSafepay apiProtocol for testing purposes" 
+        systemResourceId="omultisafepay"
+        systemPropertyValue="https"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="HostName.production" 
+        description="MultiSafepay apiHostName for production purposes" 
+        systemResourceId="omultisafepay"
+        systemPropertyValue="?.multisafepay.com"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="HostName.test" 
         description="MultiSafepay apiHostName for testing purposes" 
         systemResourceId="omultisafepay"
-        systemPropertyId="HostName.test" 
         systemPropertyValue="testapi.multisafepay.com"
         />
     
     <SystemProperty 
-        description="MultiSafepay apiPort for testing purposes" 
+        systemPropertyId="HostPort.production" 
+        description="MultiSafepay apiPort for purposes purposes" 
         systemResourceId="omultisafepay"
-        systemPropertyId="HostPort.test" 
         systemPropertyValue="443"
         />
     
     <SystemProperty 
+        systemPropertyId="HostPort.test" 
+        description="MultiSafepay apiPort for testing purposes" 
+        systemResourceId="omultisafepay"
+        systemPropertyValue="443"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="apiKey.production" 
+        description="MultiSafepay api key for production purposes" 
+        systemResourceId="omultisafepay"
+        systemPropertyValue="Put your api key here" 
+        />
+    
+    <SystemProperty 
+        systemPropertyId="apiKey.test" 
         description="MultiSafepay api key for testing purposes" 
         systemResourceId="omultisafepay"
-        systemPropertyId="apiKey.test" 
         systemPropertyValue="48859a56dfa611e7a0ee856063b4f2334e757309" 
         />
     
     <SystemProperty 
+        systemPropertyId="apiRequest.production" 
+        description="MultiSafepay Request for production purposes"  
+        systemResourceId="omultisafepay"
+        systemPropertyValue="/v1/json/orders"
+        />
+    
+    <SystemProperty 
+        systemPropertyId="apiRequest.test" 
         description="MultiSafepay Request for testing purposes"  
         systemResourceId="omultisafepay"
-        systemPropertyId="apiRequest.test" 
         systemPropertyValue="/v1/json/orders"
         />
     
     <!-- Enablement of payment modules -->
     <SystemProperty
-        description="Bank transfer enablement" 
         systemPropertyId="multisafepay_banktrans.enable" 
+        description="Bank transfer enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Direct debit enablement" 
         systemPropertyId="multisafepay_dirdebit.enable" 
+        description="Direct debit enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Giropay enablement" 
         systemPropertyId="multisafepay_giropay.enable" 
+        description="Giropay enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="iDeal enablement" 
         systemPropertyId="multisafepay_ideal.enable" 
+        description="iDeal enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via iDeal" 
-        systemPropertyId="multisafepay_ideal.fee" 
-        systemPropertyValue="0" 
-        systemResourceId="omultisafepay"/>
-    
-    <SystemProperty
-        description="Maestro enablement" 
         systemPropertyId="multisafepay_maestro.enable" 
+        description="Maestro enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Mastercard enablement" 
         systemPropertyId="multisafepay_mastercard.enable" 
+        description="Mastercard enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Mister Cash enablement" 
         systemPropertyId="multisafepay_mistercash.enable" 
+        description="Mister Cash enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Payment After enablement" 
         systemPropertyId="multisafepay_payafter.enable" 
+        description="Payment After enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Visa enablement" 
         systemPropertyId="multisafepay_visa.enable" 
+        description="Visa enablement" 
         systemPropertyValue="true" 
         systemResourceId="omultisafepay"/>
     
     <!-- Fixed amount fees for transactions -->
     <SystemProperty
-        description="Fee (fixed amount) for transactions via bank transfer" 
         systemPropertyId="multisafepay_banktrans.fee" 
+        description="Fee (fixed amount) for transactions via bank transfer" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via direct debit" 
         systemPropertyId="multisafepay_dirdebit.fee" 
+        description="Fee (fixed amount) for transactions via direct debit" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via Giropay" 
         systemPropertyId="multisafepay_giropay.fee" 
+        description="Fee (fixed amount) for transactions via Giropay" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-    description="Fee (fixed amount) for transactions via iDeal" 
     systemPropertyId="multisafepay_ideal.fee" 
+    description="Fee (fixed amount) for transactions via iDeal" 
     systemPropertyValue="0" 
     systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via Maestro" 
         systemPropertyId="multisafepay_maestro.fee" 
+        description="Fee (fixed amount) for transactions via Maestro" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via Mastercard" 
         systemPropertyId="multisafepay_mastercard.fee" 
+        description="Fee (fixed amount) for transactions via Mastercard" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via Mister Cash" 
         systemPropertyId="multisafepay_mistercash.fee" 
+        description="Fee (fixed amount) for transactions via Mister Cash" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via Payment After" 
         systemPropertyId="multisafepay_payafter.fee" 
+        description="Fee (fixed amount) for transactions via Payment After" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via Visa" 
         systemPropertyId="multisafepay_visa.fee" 
+        description="Fee (fixed amount) for transactions via Visa" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <!-- Percentage fees for transactions -->
     <SystemProperty
-        description="Fee (percentage) for transactions via bank transfer" 
         systemPropertyId="multisafepay_banktrans.percentage" 
+        description="Fee (percentage) for transactions via bank transfer" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (percentage) for transactions via direct debit" 
         systemPropertyId="multisafepay_dirdebit.percentage" 
+        description="Fee (percentage) for transactions via direct debit" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (percentage) for transactions via Giropay" 
         systemPropertyId="multisafepay_giropay.percentage" 
+        description="Fee (percentage) for transactions via Giropay" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (percentage) for transactions via iDeal" 
         systemPropertyId="multisafepay_ideal.percentage" 
+        description="Fee (percentage) for transactions via iDeal" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (percentage) for transactions via Maestro" 
         systemPropertyId="multisafepay_maestro.percentage" 
+        description="Fee (percentage) for transactions via Maestro" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (fixed amount) for transactions via Mastercard" 
         systemPropertyId="multisafepay_mastercard.percentage" 
+        description="Fee (fixed amount) for transactions via Mastercard" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (percentage) for transactions via Mister Cash" 
         systemPropertyId="multisafepay_mistercash.percentage" 
+        description="Fee (percentage) for transactions via Mister Cash" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (percentage) for transactions via Payment After" 
         systemPropertyId="multisafepay_payafter.percentage" 
+        description="Fee (percentage) for transactions via Payment After" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
     <SystemProperty
-        description="Fee (percentage) for transactions via Visa" 
         systemPropertyId="multisafepay_visa.percentage" 
+        description="Fee (percentage) for transactions via Visa" 
         systemPropertyValue="0" 
         systemResourceId="omultisafepay"/>
     
