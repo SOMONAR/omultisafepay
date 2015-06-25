@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-engine-xml>
-
+    
+    <GlAccount parentGlAccountId="122000" glAccountId="122500" accountCode="122500"
+    glAccountClassId="CURRENT_ASSET" glAccountTypeId="MRCH_STLMNT_ACCOUNT" glResourceTypeId="MONEY"
+    accountName="ACCOUNTS RECEIVABLE - MultiSafepay" description=""/>
+    
+    <PaymentMethodTypeGlAccount organizationPartyId="Company" paymentMethodTypeId="omultisafepay" glAccountId="122500"/>
+    
+    <ProductStorePaymentSetting 
+        applyToAllProducts="Y" 
+        paymentGatewayConfigId="omultisafepay_CONFIG" 
+        paymentMethodTypeId="omultisafepay" 
+        paymentServiceTypeEnumId="PRDS_PAY_EXTERNAL" 
+        productStoreId="9000"/>
 </entity-engine-xml>

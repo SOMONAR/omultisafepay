@@ -27,6 +27,12 @@
     systemResourceId="omultisafepay"/>
     
     <SystemProperty
+    description="iDeal enablement" 
+    systemPropertyId="multisafepay_ideal.enable" 
+    systemPropertyValue="true" 
+    systemResourceId="omultisafepay"/>
+    
+    <SystemProperty
     description="Fee (fixed amount) for transactions via iDeal" 
     systemPropertyId="multisafepay_ideal.fee" 
     systemPropertyValue="0" 
