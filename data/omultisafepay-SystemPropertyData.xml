@@ -27,7 +27,7 @@
         systemPropertyId="HostName.production" 
         description="MultiSafepay apiHostName for production purposes" 
         systemResourceId="omultisafepay"
-        systemPropertyValue="?.multisafepay.com"
+        systemPropertyValue="api.multisafepay.com"
         />
     
     <SystemProperty 
@@ -39,7 +39,7 @@
     
     <SystemProperty 
         systemPropertyId="HostPort.production" 
-        description="MultiSafepay apiPort for purposes purposes" 
+        description="MultiSafepay apiPort for production purposes" 
         systemResourceId="omultisafepay"
         systemPropertyValue="443"
         />
