@@ -37,7 +37,7 @@
 
     <!-- web applications; will be mounted when using the embedded container -->
     <webapp name="omultisafepay"
-        title="omultisafepay"
+        title="MultiSafepay Integration"
         server="default-server"
         location="webapp/omultisafepay"
         base-permission="OFBTOOLS,omultisafepay"
