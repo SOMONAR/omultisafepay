@@ -1,3 +1,5 @@
+![OFBiz](http://ofbiz.apache.org/images/logo.png "Apache OFBiz")
+
 # omultisafepay
 3rd party Payment Provider Integration Solution for MultiSafepay&trade; as a separate and optional hot-deploy component.
 
