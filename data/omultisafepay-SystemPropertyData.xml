@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-engine-xml>
     
+    <SystemProperty
+    description="MultiSafepay api key" 
+    systemPropertyId="apiKey" 
+    systemPropertyValue="Put your key here" 
+    systemResourceId="omultisafepay"/>
+    
     <!-- Enablement of payment modules -->
     <SystemProperty
     description="Bank transfer enablement" 
