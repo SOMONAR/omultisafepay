@@ -3,7 +3,7 @@
 # omultisafepay
 3rd party Payment Provider Integration Solution for MultiSafepay&trade; as a separate and optional hot-deploy component. This component enables you to configure your MultiSafepay integration and provides templates for inclusion in your OFBiz&trade; web store
 
-MultiSafepay works with following acquirers:
+**MultiSafepay works with following acquirers:**
 
 ![American Express](https://www.multisafepay.com/fileadmin/user_upload/amex-teaser.png "American Express")
 ![BanContact](https://www.multisafepay.com/fileadmin/user_upload/bancontact-teaser.png "BanContact")
