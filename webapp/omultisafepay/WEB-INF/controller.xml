@@ -6,7 +6,6 @@
          elements found in the common-controller.xml file. -->
          
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
-
     <description>omultisafepay Component Site Configuration File</description>
 
     <!-- Events to run on every request before security (chains exempt) -->
@@ -71,6 +70,13 @@
         <event type="service" invoke="updatePaymentGatewayConfigMultiSafepay"/>
         <response name="success" type="view" value="EditPaymentGatewayConfig"/>
         <response name="error" type="view" value="EditPaymentGatewayConfig"/>
+    </request-map>
+    
+    <request-map uri="callMultisafePay">
+        <security https="true" direct-request="false"/>
+        <event type="java" path="org.ofbiz.accounting.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
+        <response name="success" type="none"/>
+        <response name="error" type="view" value="checkoutreview"/>
     </request-map>
     
     <!-- View Mappings -->
