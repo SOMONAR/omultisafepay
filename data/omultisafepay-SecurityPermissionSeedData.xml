@@ -5,7 +5,10 @@
     <SecurityPermission description="Update operations in the omultisafepay Component." permissionId="omultisafepay_UPDATE"/>
     <SecurityPermission description="Delete operations in the omultisafepay Component." permissionId="omultisafepay_DELETE"/>
     <SecurityPermission description="ALL operations in the omultisafepay Component." permissionId="omultisafepay_ADMIN"/>
-
+    
     <SecurityGroupPermission groupId="SUPER" permissionId="omultisafepay_ADMIN"/>
-
+    <!-- 
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="omultisafepay_ADMIN"/>
+     -->
+    
 </entity-engine-xml>

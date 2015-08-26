@@ -13,4 +13,24 @@
         paymentMethodTypeId="omultisafepay" 
         paymentServiceTypeEnumId="PRDS_PAY_EXTERNAL" 
         productStoreId="9000"/>
+        
+    <Enumeration description="Payment Notification Page" enumCode="PAY_NOTIFY" enumId="PRDS_PAY_NOTIFY" enumTypeId="PRDS_EMAIL" sequenceId="21"/>
+    <Enumeration description="Payment Redirect Page" enumCode="PAY_REDIRECT" enumId="PRDS_PAY_REDIRECT" enumTypeId="PRDS_EMAIL" sequenceId="22"/>
+    <Enumeration description="Payment Cancel Page" enumCode="PAY_CANCEL" enumId="PRDS_PAY_CANCEL" enumTypeId="PRDS_EMAIL" sequenceId="23"/>
+    
+    <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_NOTIFY" 
+        bodyScreenLocation="component://omultisafepay/widget/omultisafepay-Screens.xml#NotificationUrl" 
+        subject="Store - Payment Transaction Notification Page" contentType="PAGE"
+        />
+    
+    <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_REDIRECT" 
+        bodyScreenLocation="component://omultisafepay/widget/omultisafepay-Screens.xml#RedirectUrl" 
+        subject="Store - Payment Transaction Redirect Page" contentType="PAGE"
+        />
+    
+    <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_CANCEL" 
+        bodyScreenLocation="component://omultisafepay/widget/omultisafepay-Screens.xml#CancelUrl" 
+        subject="Store - Payment Transaction Cancellation Page" contentType="PAGE"
+        />
+    
 </entity-engine-xml>

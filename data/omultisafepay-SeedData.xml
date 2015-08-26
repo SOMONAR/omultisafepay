@@ -32,4 +32,21 @@
         />
     
     
+    <CustomMethodType customMethodTypeId="PAYPAL_AUTH" parentTypeId="" hasTable="N" description="PayPal authorize methods"/>
+    <CustomMethodType customMethodTypeId="PAYPAL_CAPTURE" parentTypeId="" hasTable="N" description="PayPal capture methods"/>
+    <CustomMethodType customMethodTypeId="PAYPAL_REFUND" parentTypeId="" hasTable="N" description="PayPal refund methods"/>
+    <CustomMethodType customMethodTypeId="PAYPAL_RELEASE" parentTypeId="" hasTable="N" description="PayPal release methods"/>
+    
+    <CustomMethod customMethodId="PAYPAL_AUTH_PFP" customMethodTypeId="PAYPAL_AUTH" customMethodName="payflowPayPalProcessor" description="Payflow PayPal payment authorize"/>
+    <CustomMethod customMethodId="PAYPAL_AUTH" customMethodTypeId="PAYPAL_AUTH" customMethodName="payPalProcessor" description="PayPal payment authorize"/>
+    
+    <CustomMethod customMethodId="PAYPAL_CAPTURE_PFP" customMethodTypeId="PAYPAL_CAPTURE" customMethodName="payflowPayPalCapture" description="Payflow PayPal payment capture"/>
+    <CustomMethod customMethodId="PAYPAL_CAPTURE" customMethodTypeId="PAYPAL_CAPTURE" customMethodName="payPalCapture" description="PayPal payment capture"/>
+    
+    <CustomMethod customMethodId="PAYPAL_REFUND_PFP" customMethodTypeId="PAYPAL_REFUND" customMethodName="payflowPayPalRefund" description="Payflow PayPal payment refund"/>
+    <CustomMethod customMethodId="PAYPAL_REFUND" customMethodTypeId="PAYPAL_REFUND" customMethodName="payPalRefund" description="PayPal payment refund"/>
+    
+    <CustomMethod customMethodId="PAYPAL_RELEASE_PFP" customMethodTypeId="PAYPAL_RELEASE" customMethodName="payflowPayPalVoid" description="Payflow PayPal Order release"/>
+    <CustomMethod customMethodId="PAYPAL_RELEASE" customMethodTypeId="PAYPAL_RELEASE" customMethodName="payPalVoid" description="PayPal Order Release"/>
+    
 </entity-engine-xml>
