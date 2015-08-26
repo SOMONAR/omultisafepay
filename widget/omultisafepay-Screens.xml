@@ -15,5 +15,30 @@
             </widgets>
         </section>
     </screen>
+    
+    <screen name="Test">
+        <section>
+            <actions>
+                <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
+            </actions>
+            <widgets>
+                <decorator-screen name="CommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <widgets>
+                                <screenlet title="${uiLabelMap.Entry}">
+                                    <include-form name="Test" location="component://${activeApp}/widget/forms/${activeApp}-Forms.xml"/>
+                                </screenlet>
+                                <screenlet title="${uiLabelMap.Result}">
+                                    <container id="resultDetails"/>
+                                </screenlet>
+                            </widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
 
 </screens>
