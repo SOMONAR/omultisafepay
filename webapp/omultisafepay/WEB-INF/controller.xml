@@ -72,9 +72,38 @@
         <response name="error" type="view" value="EditPaymentGatewayConfig"/>
     </request-map>
     
+    <request-map uri="test">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="test"/>
+    </request-map>
+    
+    
+    <request-map uri="testMultisafepay">
+        <security https="true" auth="true"/>
+        <!-- 
+        <event type="java" path="org.ofbiz.accounting.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
+        <event type="java" path="com.orrtiz.payment.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
+         -->
+        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay.groovy"/>
+        
+        
+        <response name="success" type="view" value="test"/>
+        <response name="error" type="view" value="test"/>
+    </request-map>
+    
+    <request-map uri="postcodeValidation">
+        <security https="true" auth="true"/>
+        <event type="groovy" path="component://postcodenl/script/com/orrtiz/postcodenl/PostCodeValidation.groovy"/>
+        <response name="success" type="request" value="json"/>
+        <response name="error" type="view" value="testPCNL"/>
+    </request-map>
+    
     <request-map uri="callMultisafePay">
         <security https="true" direct-request="false"/>
+        <!-- 
         <event type="java" path="org.ofbiz.accounting.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
+         -->
+        <event type="java" path="com.orrtiz.payment.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
         <response name="success" type="none"/>
         <response name="error" type="view" value="checkoutreview"/>
     </request-map>
@@ -93,5 +122,8 @@
     <view-map name="EditPaymentGatewayConfig" page="component://omultisafepay//widget/PaymentGatewayConfigScreens.xml#EditPaymentGatewayConfig" type="screen"/>
     <view-map name="FindPaymentGatewayConfigTypes" page="component://omultisafepay//widget/PaymentGatewayConfigScreens.xml#FindPaymentGatewayConfigTypes" type="screen"/>
     <view-map name="EditPaymentGatewayConfigType" page="component://omultisafepay//widget/PaymentGatewayConfigScreens.xml#EditPaymentGatewayConfigType" type="screen"/>
+    
+    <view-map name="test" type="screen" page="component://omultisafepay/widget/omultisafepay-Screens.xml#Test"/>
+    <view-map name="testreview" type="screen" page="component://omultisafepay/widget/omultisafepay-Screens.xml#TestReview"/>
     
 </site-conf>
