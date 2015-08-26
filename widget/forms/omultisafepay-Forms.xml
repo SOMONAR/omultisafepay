@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
-
-
+    
+    <form name="Test" type="single" target="testMultisafepay">
+        <field name="state"><hidden value="test"/></field>
+        <field name="typeId"><text default-value="redirect"/></field>
+        <field name="orderId"><text default-value="1"/></field>
+        <field name="currencyUomId"><text default-value="EUR"/></field>
+        <field name="amount"><text default-value="1"/></field>
+        <field name="description"><text default-value="test"/></field>
+        <field name="dummy99" title=" "><display/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonSubmit}" widget-style="smallSubmit">
+            <submit button-type="button"/>
+        </field>
+    </form>
+    
 </forms>
