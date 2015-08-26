@@ -32,7 +32,7 @@
             </condition>
             <link target="systemproperties"/>
         </menu-item>
-        <menu-item name="gatewayConfiguration" title="${uiLabelMap.Gateway} ${uiLabelMap.Configuration}">
+        <menu-item name="gatewayConfiguration" title="${uiLabelMap.Gateway} ${uiLabelMap.CommonConfiguration}">
             <condition>
                 <if-has-permission permission="${activeApp}" action="_ADMIN"/>
             </condition>
