@@ -32,12 +32,6 @@
             </condition>
             <link target="systemproperties"/>
         </menu-item>
-        <menu-item name="gatewayConfiguration" title="${uiLabelMap.Gateway} ${uiLabelMap.CommonConfiguration}">
-            <condition>
-                <if-has-permission permission="${activeApp}" action="_ADMIN"/>
-            </condition>
-            <link target="EditPaymentGatewayConfig"/>
-        </menu-item>
     </menu>
     
     <menu name="ConfigurationSubTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
