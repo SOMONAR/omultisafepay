@@ -10,73 +10,273 @@ package com.orrtiz.payment
 //import javax.servlet.http.HttpServletRequest;
 //import javax.servlet.http.HttpServletResponse;
 
+import java.math.BigDecimal;
+import java.util.Collection;
+
 import org.ofbiz.base.conversion.JSONConverters.JSONToMap;
 import org.ofbiz.base.lang.JSON;
 import org.ofbiz.base.util.Debug;
 import org.ofbiz.base.util.HttpClient;
 import org.ofbiz.base.util.HttpClientException;
 import org.ofbiz.base.util.SSLUtil;
+import org.ofbiz.base.util.UtilMisc;
 import org.ofbiz.base.util.UtilProperties;
+import org.ofbiz.base.util.UtilValidate;
+import org.ofbiz.entity.GenericEntityException;
+import org.ofbiz.entity.GenericValue;
 import org.ofbiz.entity.util.EntityUtilProperties;
+import org.ofbiz.order.order.OrderReadHelper;
+import org.ofbiz.party.contact.ContactHelper;
 //import org.ofbiz.entity.Delegator;
 //import org.ofbiz.entity.GenericEntityException;
 //import org.ofbiz.entity.GenericValue;
 //import org.ofbiz.product.store.ProductStoreWorker;
 
-Debug.logInfo("in multisafepay.groovy: --------------------------",module);
+logPrefix = "in multisafepay.groovy: "
+Debug.logInfo(logPrefix + "--------------------------",module);
 
-Debug.logInfo("in multisafepay.groovy: set generics",module);
+Debug.logInfo(logPrefix + "set generics",module);
 
 String systemResourceId="omultisafepay"
 String resource = "omultisafepay-UiLabels";
 String resourceErr = "omultisafepay-ErrorUiLabels";
 String commonResource = "CommonUiLabels";
 Locale locale = (Locale) context.get("locale");
-Debug.logInfo("in multisafepay.groovy: locale = " + locale,module);
+Debug.logInfo(logPrefix + "locale = " + locale,module);
 
-Debug.logInfo("in multisafepay.groovy: get configuration variables",module);
+Debug.logInfo(logPrefix + "get configuration variables",module);
 
 String apiKey = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'apiKey.test', delegator);
-Debug.logInfo("in multisafepay.groovy: apiKey = " + apiKey,module);
+Debug.logInfo(logPrefix + "apiKey = " + apiKey,module);
 
 String hostProtocol = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'HostProtocol.test', delegator);
-Debug.logInfo("in multisafepay.groovy: hostProtocol = " + hostProtocol,module);
+Debug.logInfo(logPrefix + "hostProtocol = " + hostProtocol,module);
 
 String hostName = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'HostName.test', delegator);
-Debug.logInfo("in multisafepay.groovy: hostName = " + hostName,module);
+Debug.logInfo(logPrefix + "hostName = " + hostName,module);
 
 String apiRequest = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'apiRequest.test', delegator);
-Debug.logInfo("in multisafepay.groovy: hostProtocol = " + apiRequest,module);
+Debug.logInfo(logPrefix + "hostProtocol = " + apiRequest,module);
 
 String requestUrl = hostProtocol + '://' + hostName + apiRequest
-Debug.logInfo("in multisafepay.groovy: requestUrl = " + requestUrl,module);
+Debug.logInfo(logPrefix + "requestUrl = " + requestUrl,module);
 
 state = parameters.state
-Debug.logInfo("in multisafepay.groovy: starting with state = " + state,module);
+Debug.logInfo(logPrefix + "starting with state = " + state,module);
 
 String typeId = parameters.typeId
-Debug.logInfo("in multisafepay.groovy: typeId = " + typeId,module);
+Debug.logInfo(logPrefix + "typeId = " + typeId,module);
 
 String orderId = parameters.orderId
-Debug.logInfo("in multisafepay.groovy: orderId = " + orderId,module);
+Debug.logInfo(logPrefix + "orderId = " + orderId,module);
 
-String currencyUomId = parameters.currencyUomId
-Debug.logInfo("in multisafepay.groovy: currencyUomId = " + currencyUomId,module);
+// get the order header
+try {
+	orderHeader = from("OrderHeader").where("orderId", orderId).queryOne();
+} catch (GenericEntityException e) {
+	Debug.logError(e, "Cannot get the order header for order: " + orderId, module);
+	request.setAttribute("_ERROR_MESSAGE_", UtilProperties.getMessage(resourceErr, "MultisafePayEvents.problemsGettingOrderHeader", locale));
+	return "error";
+}
+// get the order total
+BigDecimal bd =  new BigDecimal("100.0");
+bd.setScale(0);
+bd.stripTrailingZeros();
+String orderTotalLong = orderHeader.getBigDecimal("grandTotal").multiply(bd).toPlainString();
+int index_point = orderTotalLong.indexOf(".");
+orderTotalLong = orderTotalLong.substring(0, index_point);
+Debug.logInfo(logPrefix + "orderTotalLong = " + orderTotalLong,module);
+String orderTotal = orderHeader.getBigDecimal("grandTotal").toPlainString();
+Debug.logInfo(logPrefix + "orderTotal = " + orderTotal,module);
+
+
+// get some details from the order
+OrderReadHelper orh = new OrderReadHelper(delegator, orderId);
+String currencyUomId = orh.getCurrency()
+Debug.logInfo(logPrefix + "currencyUomId = " + currencyUomId,module);
 
 String amount = parameters.amount
-Debug.logInfo("in multisafepay.groovy: amount = " + amount,module);
+Debug.logInfo(logPrefix + "amount = " + amount,module);
 
 String description = parameters.description
-Debug.logInfo("in multisafepay.groovy: description = " + description,module);
+Debug.logInfo(logPrefix + "description = " + description,module);
 
-String jsonString = "{" +
-		"\"type\":\"" + typeId +"\" ," +
+String productStoreId = orh.getProductStoreId()
+Debug.logInfo(logPrefix + "productStoreId = " + productStoreId,module);
+
+// get the urls to pass along
+notificationUrl = 'notificationUrl'
+redirectUrl = 'redirectUrl'
+cancelUrl = 'cancelUrl'
+
+//building the payment Options
+webSiteUrl = (String) context.get("webSiteUrl");
+Debug.logInfo(logPrefix + "webSiteUrl = " + webSiteUrl,module);
+String sru = parameters._SERVER_ROOT_URL_;
+Debug.logInfo(logPrefix + "_SERVER_ROOT_URL_ = " + sru,module);
+
+String cp = parameters._CONTROL_PATH_;
+Debug.logInfo(logPrefix + "_CONTROL_PATH_ = " + cp,module);
+
+storePage = from("ProductStoreEmailSetting").where("productStoreId", productStoreId, "emailType", "PRDS_PAY_NOTIFY" ).queryOne()
+uri = storePage.bodyScreenLocation
+notificationUrl = sru + cp +"/" + uri
+storePage = from("ProductStoreEmailSetting").where("productStoreId", productStoreId, "emailType", "PRDS_PAY_REDIRECT" ).queryOne()
+uri = storePage.bodyScreenLocation
+redirectUrl = sru + cp +"/" + uri
+storePage = from("ProductStoreEmailSetting").where("productStoreId", productStoreId, "emailType", "PRDS_PAY_CANCEL" ).queryOne()
+uri = storePage.bodyScreenLocation
+cancelUrl = sru + cp +"/" + uri
+
+String jsonPaymentOptions = 
+		"{" +
+		"\"notification_url\":\"" + notificationUrl +"\" ," +
+		"\"redirect_url\":\"" + redirectUrl +"\" ," +
+		"\"cancel_url\":\"" + cancelUrl + "\"" +
+		"}"
+Debug.logInfo(logPrefix + "jsonPaymentOptions = " + jsonPaymentOptions,module);
+
+placingParty = orh.getPlacingParty();
+//Debug.logInfo(logPrefix + "placingParty = " + placingParty,module);
+billToParty = orh.getBillToParty();
+//Debug.logInfo(logPrefix + "billToParty = " + billToParty,module);
+// building the customer
+
+// email address
+String emailAddress = null;
+Collection emCol = ContactHelper.getContactMech(placingParty, "PRIMARY_EMAIL", "EMAIL_ADDRESS", false);
+if (UtilValidate.isEmpty(emCol)) {
+	emCol = ContactHelper.getContactMech(placingParty, null, "EMAIL_ADDRESS", false);
+}
+if (!UtilValidate.isEmpty(emCol)) {
+	GenericValue emVl = (GenericValue) emCol.iterator().next();
+	if (emVl != null) {
+		emailAddress = emVl.getString("infoString");
+	}
+} else {
+	emailAddress = "";
+}
+Debug.logInfo(logPrefix + "emailAddress: " + emailAddress, module);
+
+// shipping address
+String address1 = null;
+String address2 = null;
+String city = null;
+String state = null;
+String zipCode = null;
+String country = null;
+Collection adCol = ContactHelper.getContactMech(placingParty, "SHIPPING_LOCATION", "POSTAL_ADDRESS", false);
+if (UtilValidate.isEmpty(adCol)) {
+	adCol = ContactHelper.getContactMech(placingParty, null, "POSTAL_ADDRESS", false);
+}
+if (!UtilValidate.isEmpty(adCol)) {
+	GenericValue adVl = (GenericValue) adCol.iterator().next();
+	if (adVl != null) {
+		GenericValue addr = null;
+		try {
+			addr = adVl.getDelegator().findOne("PostalAddress", UtilMisc.toMap("contactMechId",
+					adVl.getString("contactMechId")), false);
+		} catch (GenericEntityException e) {
+			Debug.logError(e, module);
+		}
+		if (addr != null) {
+			address1 = addr.getString("address1");
+			address2 = addr.getString("address2");
+			city = addr.getString("city");
+			state = addr.getString("stateProvinceGeoId");
+			zipCode = addr.getString("postalCode");
+			country = addr.getString("countryGeoId");
+			if (address2 == null) {
+				address2 = "";
+			}
+		}
+	}
+}
+Debug.logInfo(logPrefix + "address1: " + address1, module);
+Debug.logInfo(logPrefix + "address2: " + address2, module);
+Debug.logInfo(logPrefix + "city: " + city, module);
+Debug.logInfo(logPrefix + "state: " + state, module);
+Debug.logInfo(logPrefix + "zipCode: " + zipCode, module);
+Debug.logInfo(logPrefix + "country: " + country, module);
+
+// phone number
+String phoneNumber = null;
+Collection phCol = ContactHelper.getContactMech(placingParty, "PHONE_HOME", "TELECOM_NUMBER", false);
+if (UtilValidate.isEmpty(phCol)) {
+	phCol = ContactHelper.getContactMech(placingParty, null, "TELECOM_NUMBER", false);
+}
+if (!UtilValidate.isEmpty(phCol)) {
+	GenericValue phVl = (GenericValue) phCol.iterator().next();
+	if (phVl != null) {
+		GenericValue tele = null;
+		try {
+			tele = phVl.getDelegator().findOne("TelecomNumber", UtilMisc.toMap("contactMechId",
+					phVl.getString("contactMechId")), false);
+		} catch (GenericEntityException e) {
+			Debug.logError(e, module);
+		}
+		if (tele != null) {
+			phoneNumber = ""; // reset the string
+			String cc = tele.getString("countryCode");
+			String ac = tele.getString("areaCode");
+			String nm = tele.getString("contactNumber");
+			if (UtilValidate.isNotEmpty(cc)) {
+				phoneNumber = phoneNumber + cc + "-";
+			}
+			if (UtilValidate.isNotEmpty(ac)) {
+				phoneNumber = phoneNumber + ac + "-";
+			}
+			phoneNumber = phoneNumber + nm;
+		} else {
+			phoneNumber = "";
+		}
+	}
+}
+Debug.logInfo(logPrefix + "phoneNumber: " + phoneNumber, module);
+String jsonCustomer =
+		"{" +
+		"\"locale\": \"" + locale + "\" ," +
+		"\"first_name\": \"" + placingParty.firstName + "\" ," +
+		"\"last_name\": \"" + placingParty.lastName + "\" ," +
+		"\"address1\": \"" + address1 + "\" ," +
+		"\"address2\": \"" + address2 + "\" ," +
+		"\"house_number\": \"" + address1 + "\" ," +
+		"\"zip_code\": \"" + zipCode + "\" ," +
+		"\"city\": \"" + city + "\" ," +
+		"\"state\": \"" + state + "\" ," +
+		"\"country\": \"" + country + "\" ," +
+		"\"email\": \"" + emailAddress + "\"" +
+		"}"
+Debug.logInfo(logPrefix + "jsonCustomer = " + jsonCustomer,module);
+
+String webSiteId = orh.getWebSiteId();
+Debug.logInfo(logPrefix + "webSiteId = " + webSiteId,module);
+googleAccount = from("WebAnalyticsConfig").where("webSiteId", webSiteId, "webAnalyticsTypeId", "GOOGLE_ANALYTICS" ).queryOne()
+Debug.logInfo(logPrefix + "googleAccount = " + googleAccount,module);
+// building the analytics
+
+	String jsonAnalytics =
+		"{" +
+		"\"account\": \"" + googleAccount.webAnalyticsCode + "\"" +
+		"}"
+Debug.logInfo(logPrefix + "jsonAnalytics = " + jsonAnalytics,module);
+
+
+
+// building the jsonString
+String jsonString = 
+		"{" +
+		"\"type\":\"" + "redirect" +"\" ," +
 		"\"order_id\": \"" + orderId + "\" ," +
-		"\"currency\":\"" + currencyUomId + "\"," +
-		"\"locale\":\"" + locale + "\"," +
-		"\"amount\": \"" + amount + "\" ," +
-		"\"description\":\"" + description + "\"}";
-Debug.logInfo("in multisafepay.groovy: jsonString = " + jsonString,module);
+		"\"currency\":\"" + currencyUomId + "\" ," +
+		"\"locale\":\"" + locale + "\" ," +
+		"\"amount\": \"" + orderTotalLong + "\" ," +
+		"\"description\": \"" + "test re " + orderId + "\" ," +
+		"\"payment_options\": " + jsonPaymentOptions  + " ," +
+		"\"customer\": " + jsonCustomer  + " ," +
+		"\"google_analytics\": " + jsonAnalytics +
+		"}"
+Debug.logInfo(logPrefix + "jsonString = " + jsonString,module);
 
 
 HttpClient http = new HttpClient(requestUrl);
@@ -113,14 +313,14 @@ catch (HttpClientException e) {
 	return "error";
 }
 if (code == 200){
-	Debug.logInfo("in multisafepay.groovy: code = " + code ,module);
-	Debug.logInfo("in multisafepay.groovy: retResponse = " + retResponse ,module);
+	Debug.logInfo(logPrefix + "code = " + code ,module);
+	Debug.logInfo(logPrefix + "retResponse = " + retResponse ,module);
 	JSON jsonObject = JSON.from(retResponse)
-	Debug.logInfo("in multisafepay.groovy: json = " + jsonObject,module);
+	Debug.logInfo(logPrefix + "json = " + jsonObject,module);
 	JSONToMap jsonMap = new JSONToMap();
 	Map<String, Object> userMap = jsonMap.convert(jsonObject);
 	paymentUrl = userMap.data.payment_url
-	Debug.logInfo("in multisafepay.groovy: paymentUrl = " + paymentUrl,module);
+	Debug.logInfo(logPrefix + "paymentUrl = " + paymentUrl,module);
 	
 	try {
 		response.sendRedirect(paymentUrl);
@@ -132,7 +332,7 @@ if (code == 200){
 	}
 }
 else {
-	Debug.logInfo("in multisafepay.groovy: code = " + code ,module);
+	Debug.logInfo(logPrefix + "code = " + code ,module);
 }
 
-Debug.logInfo("in multisafepay.groovy: --------------------------",module);
+Debug.logInfo(logPrefix + "--------------------------",module);
