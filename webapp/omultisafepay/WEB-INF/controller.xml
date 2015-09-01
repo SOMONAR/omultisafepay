@@ -63,7 +63,7 @@
     
     <request-map uri="testMultisafepay">
         <security https="true" auth="true"/>
-        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay.groovy"/>
+        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/testmultisafepay.groovy"/>
         <response name="success" type="view" value="test"/>
         <response name="error" type="view" value="test"/>
     </request-map>
