@@ -28,7 +28,7 @@ String resource = "omultisafepay-UiLabels";
 String resourceErr = "omultisafepay-ErrorUiLabels";
 String commonResource = "CommonUiLabels";
 Locale locale = (Locale) context.get("locale");
-logPrefix = "in multisafepay.groovy: "
+logPrefix = "in testmultisafepay.groovy: "
 Debug.logInfo(logPrefix + " --------------------------",module);
 
 Debug.logInfo(logPrefix + " set generics",module);
