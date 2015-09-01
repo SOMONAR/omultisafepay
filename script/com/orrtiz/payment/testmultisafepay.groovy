@@ -23,51 +23,57 @@ import org.ofbiz.entity.util.EntityUtilProperties;
 //import org.ofbiz.entity.GenericValue;
 //import org.ofbiz.product.store.ProductStoreWorker;
 
-Debug.logInfo("in multisafepay.groovy: --------------------------",module);
+String systemResourceId="omultisafepay"
+String resource = "omultisafepay-UiLabels";
+String resourceErr = "omultisafepay-ErrorUiLabels";
+String commonResource = "CommonUiLabels";
+Locale locale = (Locale) context.get("locale");
+logPrefix = "in multisafepay.groovy: "
+Debug.logInfo(logPrefix + " --------------------------",module);
 
-Debug.logInfo("in multisafepay.groovy: set generics",module);
+Debug.logInfo(logPrefix + " set generics",module);
 
 String systemResourceId="omultisafepay"
 String resource = "omultisafepay-UiLabels";
 String resourceErr = "omultisafepay-ErrorUiLabels";
 String commonResource = "CommonUiLabels";
 Locale locale = (Locale) context.get("locale");
-Debug.logInfo("in multisafepay.groovy: locale = " + locale,module);
+Debug.logInfo(logPrefix + " locale = " + locale,module);
 
-Debug.logInfo("in multisafepay.groovy: get configuration variables",module);
+Debug.logInfo(logPrefix + " get configuration variables",module);
 
 String apiKey = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'apiKey.test', delegator);
-Debug.logInfo("in multisafepay.groovy: apiKey = " + apiKey,module);
+Debug.logInfo(logPrefix + " apiKey = " + apiKey,module);
 
 String hostProtocol = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'HostProtocol.test', delegator);
-Debug.logInfo("in multisafepay.groovy: hostProtocol = " + hostProtocol,module);
+Debug.logInfo(logPrefix + " hostProtocol = " + hostProtocol,module);
 
 String hostName = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'HostName.test', delegator);
-Debug.logInfo("in multisafepay.groovy: hostName = " + hostName,module);
+Debug.logInfo(logPrefix + " hostName = " + hostName,module);
 
 String apiRequest = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'apiRequest.test', delegator);
-Debug.logInfo("in multisafepay.groovy: hostProtocol = " + apiRequest,module);
+Debug.logInfo(logPrefix + " hostProtocol = " + apiRequest,module);
 
 String requestUrl = hostProtocol + '://' + hostName + apiRequest
-Debug.logInfo("in multisafepay.groovy: requestUrl = " + requestUrl,module);
+Debug.logInfo(logPrefix + " requestUrl = " + requestUrl,module);
 
 state = parameters.state
-Debug.logInfo("in multisafepay.groovy: starting with state = " + state,module);
+Debug.logInfo(logPrefix + " starting with state = " + state,module);
 
 String typeId = parameters.typeId
-Debug.logInfo("in multisafepay.groovy: typeId = " + typeId,module);
+Debug.logInfo(logPrefix + " typeId = " + typeId,module);
 
 String orderId = parameters.orderId
-Debug.logInfo("in multisafepay.groovy: orderId = " + orderId,module);
+Debug.logInfo(logPrefix + " orderId = " + orderId,module);
 
 String currencyUomId = parameters.currencyUomId
-Debug.logInfo("in multisafepay.groovy: currencyUomId = " + currencyUomId,module);
+Debug.logInfo(logPrefix + " currencyUomId = " + currencyUomId,module);
 
 String amount = parameters.amount
-Debug.logInfo("in multisafepay.groovy: amount = " + amount,module);
+Debug.logInfo(logPrefix + " amount = " + amount,module);
 
 String description = parameters.description
-Debug.logInfo("in multisafepay.groovy: description = " + description,module);
+Debug.logInfo(logPrefix + " description = " + description,module);
 
 String jsonString = "{" +
 		"\"type\":\"" + typeId +"\" ," +
@@ -76,7 +82,7 @@ String jsonString = "{" +
 		"\"locale\":\"" + locale + "\"," +
 		"\"amount\": \"" + amount + "\" ," +
 		"\"description\":\"" + description + "\"}";
-Debug.logInfo("in multisafepay.groovy: jsonString = " + jsonString,module);
+Debug.logInfo(logPrefix + " jsonString = " + jsonString,module);
 
 
 HttpClient http = new HttpClient(requestUrl);
@@ -113,14 +119,14 @@ catch (HttpClientException e) {
 	return "error";
 }
 if (code == 200){
-	Debug.logInfo("in multisafepay.groovy: code = " + code ,module);
-	Debug.logInfo("in multisafepay.groovy: retResponse = " + retResponse ,module);
+	Debug.logInfo(logPrefix + " code = " + code ,module);
+	Debug.logInfo(logPrefix + " retResponse = " + retResponse ,module);
 	JSON jsonObject = JSON.from(retResponse)
-	Debug.logInfo("in multisafepay.groovy: json = " + jsonObject,module);
+	Debug.logInfo(logPrefix + " json = " + jsonObject,module);
 	JSONToMap jsonMap = new JSONToMap();
 	Map<String, Object> userMap = jsonMap.convert(jsonObject);
 	paymentUrl = userMap.data.payment_url
-	Debug.logInfo("in multisafepay.groovy: paymentUrl = " + paymentUrl,module);
+	Debug.logInfo(logPrefix + " paymentUrl = " + paymentUrl,module);
 	
 	try {
 		response.sendRedirect(paymentUrl);
@@ -132,7 +138,7 @@ if (code == 200){
 	}
 }
 else {
-	Debug.logInfo("in multisafepay.groovy: code = " + code ,module);
+	Debug.logInfo(logPrefix + " code = " + code ,module);
 }
 
-Debug.logInfo("in multisafepay.groovy: --------------------------",module);
+Debug.logInfo(logPrefix + " --------------------------",module);
