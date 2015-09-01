@@ -79,6 +79,23 @@
         <response name="error" type="view" value="checkoutreview"/>
     </request-map>
     
+    <!-- return uri from 3prd party payment processing -->
+    <request-map uri="omultisafepay-redirect">
+        <security https="false" auth="false"/>
+        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay-redirect.groovy"/>
+        <response name="success" type="request" value="emailorder"/>
+    </request-map>
+    <request-map uri="omultisafepay-cancel">
+        <security https="false" auth="false"/>
+        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay-cancelation.groovy"/>
+        <response name="success" type="request" value="emailorder"/>
+    </request-map>
+    <request-map uri="omultisafepay-notify">
+        <security https="false" auth="false"/>
+        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay-notify.groovy"/>
+        <response name="success" type="request" value="emailorder"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://omultisafepay/widget/omultisafepay-Screens.xml#main"/>
     
