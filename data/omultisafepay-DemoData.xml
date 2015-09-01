@@ -19,18 +19,18 @@
     <Enumeration description="Payment Cancel Page" enumCode="PAY_CANCEL" enumId="PRDS_PAY_CANCEL" enumTypeId="PRDS_EMAIL" sequenceId="23"/>
     
     <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_NOTIFY" 
-        bodyScreenLocation="component://omultisafepay/widget/omultisafepay-Screens.xml#NotificationUrl" 
-        subject="Store - Payment Transaction Notification Page" contentType="PAGE"
+        bodyScreenLocation="3rdppnotify" 
+        subject="Store - Payment Transaction Notification Uri" contentType="URI"
         />
     
     <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_REDIRECT" 
-        bodyScreenLocation="component://omultisafepay/widget/omultisafepay-Screens.xml#RedirectUrl" 
-        subject="Store - Payment Transaction Redirect Page" contentType="PAGE"
+        bodyScreenLocation="3rdppredirect" 
+        subject="Store - Payment Transaction Redirect Uri" contentType="URI"
         />
     
     <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_CANCEL" 
-        bodyScreenLocation="component://omultisafepay/widget/omultisafepay-Screens.xml#CancelUrl" 
-        subject="Store - Payment Transaction Cancellation Page" contentType="PAGE"
+        bodyScreenLocation="3rdppcancel" 
+        subject="Store - Payment Transaction Cancellation Uri" contentType="URI"
         />
     
 </entity-engine-xml>
