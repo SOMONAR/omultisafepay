@@ -23,7 +23,8 @@
          
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
     <description>omultisafepay Component Site Configuration File</description>
-
+    
+    <handler name="groovy" type="request" class="org.ofbiz.webapp.event.GroovyEventHandler"/>
     <!-- Events to run on every request before security (chains exempt) -->
     <!--
     <preprocessor>
