@@ -80,7 +80,7 @@
     
     <request-map uri="testMultisafepay">
         <security https="true" auth="true"/>
-        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/testmultisafepay.groovy"/>
+        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/testmultisafepay.groovy"/>
         <response name="success" type="view" value="test"/>
         <response name="error" type="view" value="test"/>
     </request-map>
@@ -91,7 +91,7 @@
         <event type="java" path="org.ofbiz.accounting.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
         <event type="java" path="com.orrtiz.payment.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
          -->
-        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay.groovy"/>
+        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay.groovy"/>
         <response name="success" type="none"/>
         <response name="error" type="view" value="checkoutreview"/>
     </request-map>
@@ -99,17 +99,17 @@
     <!-- return uri from 3prd party payment processing -->
     <request-map uri="omultisafepay-redirect">
         <security https="false" auth="false"/>
-        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay-redirect.groovy"/>
+        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay-redirect.groovy"/>
         <response name="success" type="request" value="emailorder"/>
     </request-map>
     <request-map uri="omultisafepay-cancel">
         <security https="false" auth="false"/>
-        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay-cancelation.groovy"/>
+        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay-cancelation.groovy"/>
         <response name="success" type="request" value="emailorder"/>
     </request-map>
     <request-map uri="omultisafepay-notify">
         <security https="false" auth="false"/>
-        <event type="groovy" path="component://omultisafepay/script/com/orrtiz/payment/multisafepay-notify.groovy"/>
+        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay-notify.groovy"/>
         <response name="success" type="request" value="emailorder"/>
     </request-map>
     
