@@ -99,7 +99,11 @@
     <!-- return uri from 3prd party payment processing -->
     <request-map uri="omultisafepay-redirect">
         <security https="false" auth="false"/>
+        <!-- 
         <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay-redirect.groovy"/>
+         -->
+        <event type="java" path="com.somonar.payment.omultisafepay.MultiSafepayRedirect" invoke="multisafepayredirect"/>
+         
         <response name="success" type="request" value="emailorder"/>
     </request-map>
     <request-map uri="omultisafepay-cancel">
