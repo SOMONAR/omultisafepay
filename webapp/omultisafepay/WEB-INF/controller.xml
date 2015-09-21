@@ -91,7 +91,7 @@
         <event type="java" path="org.ofbiz.accounting.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
         <event type="java" path="com.orrtiz.payment.thirdparty.multisafepay.MultisafePayEvents" invoke="callMultisafePay"/>
          -->
-        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay.groovy"/>
+        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/omultisafepay.groovy"/>
         <response name="success" type="none"/>
         <response name="error" type="view" value="checkoutreview"/>
     </request-map>
