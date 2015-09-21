@@ -21,12 +21,12 @@
     glAccountClassId="CURRENT_ASSET" glAccountTypeId="MRCH_STLMNT_ACCOUNT" glResourceTypeId="MONEY"
     accountName="ACCOUNTS RECEIVABLE - MultiSafepay" description=""/>
     
-    <PaymentMethodTypeGlAccount organizationPartyId="Company" paymentMethodTypeId="omultisafepay" glAccountId="122500"/>
+    <PaymentMethodTypeGlAccount organizationPartyId="Company" paymentMethodTypeId="EXT_OMULTISAFEPAY" glAccountId="122500"/>
     
     <ProductStorePaymentSetting 
         applyToAllProducts="Y" 
-        paymentGatewayConfigId="omultisafepay_CONFIG" 
-        paymentMethodTypeId="omultisafepay" 
+        paymentGatewayConfigId="OMULTISAFEPAY_CONFIG" 
+        paymentMethodTypeId="EXT_OMULTISAFEPAY" 
         paymentServiceTypeEnumId="PRDS_PAY_EXTERNAL" 
         productStoreId="9000"/>
         
