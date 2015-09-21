@@ -28,4 +28,10 @@
     <property key="omultisafepayViewPermissionError">
         <value xml:lang="en">You are not allowed to view this page.</value>
     </property>
+    
+    <property key="PayViaMultiSafepay">
+        <value xml:lang="en">Pay via MultiSafepay</value>
+        <value xml:lang="nl">Via MultiSafepay betalen</value>
+    </property>
+    
 </resource>
