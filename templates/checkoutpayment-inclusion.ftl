@@ -15,6 +15,6 @@
  limitations under the License.
 
  -->
- <#if productStorePaymentMethodTypeIdMap.EXT_MULTISAFEPAY??>
+ <#if productStorePaymentMethodTypeIdMap.EXT_OMULTISAFEPAY??>
     <#include "component://omultisafepay/templates/omultisafepay.ftl"/>
 </#if>

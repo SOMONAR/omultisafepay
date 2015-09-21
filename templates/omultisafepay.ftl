@@ -20,6 +20,6 @@ Template for omultisafepay integration
 -->
 
 <div class="paymentmethode">
-    <input type="radio" id="checkOutPaymentId_MULTISAFEPAY" name="checkOutPaymentId" value="EXT_MULTISAFEPAY" <#if "EXT_MULTISAFEPAY" == checkOutPaymentId>checked="checked"</#if> />
-    <label for="checkOutPaymentId_MULTISAFEPAY">multisafepay</label>
+    <input type="radio" id="checkOutPaymentId_OMULTISAFEPAY" name="checkOutPaymentId" value="EXT_OMULTISAFEPAY" <#if "EXT_OMULTISAFEPAY" == checkOutPaymentId>checked="checked"</#if> />
+    <label for="checkOutPaymentId_OMULTISAFEPAY">${uiLabelMap.PayViaMultiSafepay}</label>
 </div>
