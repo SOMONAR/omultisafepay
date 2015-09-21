@@ -17,16 +17,16 @@
  -->
 <entity-engine-xml>
     
-    <PaymentMethodType description="MultiSafepay (EXT)" paymentMethodTypeId="EXT_MULTISAFEPAY"/>
+    <PaymentMethodType description="MultiSafepay (EXT)" paymentMethodTypeId="EXT_OMULTISAFEPAY"/>
     
     <PaymentGatewayConfigType 
-        paymentGatewayConfigTypeId="EXT_MULTISAFEPAY" 
+        paymentGatewayConfigTypeId="EXT_OMULTISAFEPAY" 
         hasTable="N" 
         description="MultiSafepay Payment Gateway"/>
         
     <PaymentGatewayConfig 
-        paymentGatewayConfigId="omultisafepay_CONFIG" 
-        paymentGatewayConfigTypeId="omultisafepay" 
+        paymentGatewayConfigId="OMULTISAFEPAY_CONFIG" 
+        paymentGatewayConfigTypeId="EXT_OMULTISAFEPAY" 
         description="MultiSafepay Config"/>
     
 </entity-engine-xml>
