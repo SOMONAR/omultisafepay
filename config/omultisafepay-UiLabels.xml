@@ -34,4 +34,9 @@
         <value xml:lang="nl">Via MultiSafepay betalen</value>
     </property>
     
+    <property key="PaymentTransactionViaMultiSafepay">
+        <value xml:lang="en">Payment transaction via MultiSafepay</value>
+        <value xml:lang="nl">Transactie via MultiSafepay</value>
+    </property>
+    
 </resource>
