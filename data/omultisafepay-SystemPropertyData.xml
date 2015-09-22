@@ -113,21 +113,21 @@
         systemPropertyId="defaultCancelUrl" 
         description="MultiSafepay default store cancel url"  
         systemResourceId="omultisafepay"
-        systemPropertyValue="?"
+        systemPropertyValue="omultisafepay-cancel"
         />
     
     <SystemProperty 
         systemPropertyId="defaultNotficationUrl" 
         description="MultiSafepay default store cancel url"  
         systemResourceId="omultisafepay"
-        systemPropertyValue="?"
+        systemPropertyValue="omultisafepay-notify"
         />
     
     <SystemProperty 
         systemPropertyId="defaultRedirectUrl" 
         description="MultiSafepay default storeredirect url"  
         systemResourceId="omultisafepay"
-        systemPropertyValue="?"
+        systemPropertyValue="omultisafepay-redirect"
         />
     
     <!-- Enablement of payment modules -->
