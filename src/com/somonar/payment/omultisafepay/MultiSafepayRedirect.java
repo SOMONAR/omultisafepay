@@ -238,7 +238,7 @@ public class MultiSafepayRedirect {
         // create a payment record too
         Map <String, Object> results = null;
         try {
-            String comment = UtilProperties.getMessage(resource, "AccountingPaymentReceiveViaPayPal", locale);
+            String comment = UtilProperties.getMessage(resource, "PaymentTransactionViaMultiSafepay", locale);
             results = dispatcher.runSync("createPaymentFromPreference", UtilMisc.toMap("userLogin", userLogin,
                     "orderPaymentPreferenceId", paymentPreference.get("orderPaymentPreferenceId"), "comments", comment));
         } catch (GenericServiceException e) {
