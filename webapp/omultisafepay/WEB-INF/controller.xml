@@ -102,18 +102,20 @@
         <!-- 
         <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay-redirect.groovy"/>
          -->
-        <event type="java" path="com.somonar.payment.omultisafepay.MultiSafepayRedirect" invoke="multisafepayredirect"/>
-         
+        <event type="java" path="com.somonar.payment.omultisafepay.MultiSafepayClient" invoke="redirectResponse"/>
         <response name="success" type="request" value="emailorder"/>
     </request-map>
     <request-map uri="omultisafepay-cancel">
         <security https="false" auth="false"/>
+        <!-- 
         <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay-cancelation.groovy"/>
+         -->
+        <event type="java" path="com.somonar.payment.omultisafepay.MultiSafepayClient" invoke="cancelResponse"/>
         <response name="success" type="request" value="emailorder"/>
     </request-map>
     <request-map uri="omultisafepay-notify">
         <security https="false" auth="false"/>
-        <event type="groovy" path="component://omultisafepay/script/com/somonar/payment/multisafepay-notify.groovy"/>
+        <event type="java" path="com.somonar.payment.omultisafepay.MultiSafepayClient" invoke="notifyResponse"/>
         <response name="success" type="request" value="emailorder"/>
     </request-map>
     

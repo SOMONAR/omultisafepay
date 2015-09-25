@@ -53,128 +53,111 @@ import org.ofbiz.service.ModelService;
 import org.ofbiz.entity.transaction.GenericTransactionException;
 import org.ofbiz.entity.transaction.TransactionUtil;
 
-public class MultiSafepayRedirect {
-
-    public static final String module = MultiSafepayRedirect.class.getName();
+public class MultiSafepayClient {
+	
+	public static final String module = MultiSafepayClient.class.getName();
     public static final String resource = "AccountingUiLabels";
     public static final String resourceErr = "AccountingErrorUiLabels";
     public static final String commonResource = "CommonUiLabels";
-
+    public static final string oMultiSafepayResource = "omultisafepay-UiLabels";
+    
     /** Initiate MultisafePayEvents Request 
      * @throws IOException */
-    public static String multisafepayredirect(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    Locale locale = UtilHttp.getLocale(request);
-    Delegator delegator = (Delegator) request.getAttribute("delegator");
-    LocalDispatcher dispatcher = (LocalDispatcher) request.getAttribute("dispatcher");
-    GenericValue userLogin = (GenericValue) request.getSession().getAttribute("userLogin");
-
-    Map<String,Object> paramMap = UtilHttp.getParameterMap(request);
-
-    Debug.logInfo("in" + module + " - paramMap is: " + paramMap,module);
-    Debug.logInfo("in" + module + " locale is: " + locale,module);
-    Debug.logInfo("in" + module + " delegator is: " + delegator.getDelegatorName(), module);
-    Debug.logInfo("in" + module + " tenantId is: " + delegator.getDelegatorTenantId(), module);
-    String orderId = request.getParameter("transactionid");
-    Debug.logInfo("in" + module + " orderId is: " + orderId,module);
     
-    // get the order header
-    GenericValue orderHeader = null;
-    try {
-        orderHeader = delegator.findOne("OrderHeader", UtilMisc.toMap("orderId", orderId), false);
-    } catch (GenericEntityException e) {
-        Debug.logError(e, "Cannot get the order header for order: " + orderId, module);
-        request.setAttribute("_ERROR_MESSAGE_", UtilProperties.getMessage(resourceErr, "MultisafePayEvents.problemsGettingOrderHeader", locale));
-        return "error";
-    }
+	public static String cancelResponse (HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    String orderId = request.getParameter("transactionid");
+		request.setAttribute("orderId", orderId);
+	    return "success";
+	}
+	
 
-    // get the order total
-    BigDecimal bd =  new BigDecimal("100.0");
-    bd.setScale(0);
-    bd.stripTrailingZeros();
-    String orderTotalLong = orderHeader.getBigDecimal("grandTotal").multiply(bd).toPlainString();
-    int index_point = orderTotalLong.indexOf(".");
-    orderTotalLong = orderTotalLong.substring(0, index_point);
-    String orderTotal = orderHeader.getBigDecimal("grandTotal").toPlainString();
-    String currencyUom = orderHeader.getString("currencyUom");
-    
-    // attempt to start a transaction
-    boolean okay = true;
-    boolean beganTransaction = false;
-    
-    try {
-        beganTransaction = TransactionUtil.begin();
-        okay = OrderChangeHelper.approveOrder(dispatcher, userLogin, orderId);
-        
-        Debug.logInfo("okay is: " + okay,module);
-        
-        if (okay) {
-            // set the payment preference
-            okay = setPaymentPreferences(delegator, dispatcher, userLogin, orderId, request, orderTotal);
-        }
-    } catch (Exception e) {
-        String errMsg = "Error handling multisafepay redirect";
-        Debug.logError(e, errMsg, module);
-        try {
-            TransactionUtil.rollback(beganTransaction, errMsg, e);
-        } catch (GenericTransactionException gte2) {
-            Debug.logError(gte2, "Unable to rollback transaction", module);
-        }
-    } finally {
-        if (!okay) {
-            try {
-                TransactionUtil.rollback(beganTransaction, "Failure in processing multisafepay redirect", null);
-            } catch (GenericTransactionException gte) {
-                Debug.logError(gte, "Unable to rollback transaction", module);
-            }
-        } else {
-            try {
-                TransactionUtil.commit(beganTransaction);
-            } catch (GenericTransactionException gte) {
-                Debug.logError(gte, "Unable to commit transaction", module);
-            }
-        }
-    }
-
-    if (okay) {
-        // attempt to release the offline hold on the order (workflow)
-          OrderChangeHelper.releaseInitialOrderHold(dispatcher, orderId);
-
-        // call the email confirm service
-        Map <String, String> emailContext = UtilMisc.toMap("orderId", orderId);
-        try {
-            dispatcher.runSync("sendOrderConfirmation", emailContext);
-        } catch (GenericServiceException e) {
-            Debug.logError(e, "Problems sending email confirmation", module);
-        }
-    }
-    request.setAttribute("orderId", orderId);
-    return "success";
-}
-
-    private static boolean setPaymentPreferences(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin, String orderId, HttpServletRequest request, String orderTotal) {
-        Debug.logVerbose("Setting payment preferences..", module);
-        List <GenericValue> paymentPrefs = null;
-        try {
-            Map <String, String> paymentFields = UtilMisc.toMap("orderId", orderId, "statusId", "PAYMENT_NOT_RECEIVED");
-            paymentPrefs = delegator.findByAnd("OrderPaymentPreference", paymentFields, null, false);
-        } catch (GenericEntityException e) {
-            Debug.logError(e, "Cannot get payment preferences for order #" + orderId, module);
-            return false;
-        }
-        if (paymentPrefs.size() > 0) {
-            Iterator <GenericValue> i = paymentPrefs.iterator();
-            while (i.hasNext()) {
-                GenericValue pref = i.next();
-                boolean okay = setPaymentPreference(dispatcher, userLogin, pref, request, orderTotal);
-                if (!okay)
-                    return false;
-            }
-        }
-        return true;
-    }
-    
-    private static boolean setPaymentPreference(LocalDispatcher dispatcher, GenericValue userLogin, GenericValue paymentPreference, HttpServletRequest request, String orderTotal) {
+	public static String notifyResponse (HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    String orderId = request.getParameter("transactionid");
+		request.setAttribute("orderId", orderId);
+	    return "success";
+	}
+	
+	public static String redirectResponse (HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    
+	    Locale locale = UtilHttp.getLocale(request);
+	    Delegator delegator = (Delegator) request.getAttribute("delegator");
+	    LocalDispatcher dispatcher = (LocalDispatcher) request.getAttribute("dispatcher");
+	    GenericValue userLogin = (GenericValue) request.getSession().getAttribute("userLogin");
+	    
+	    Map<String,Object> paramMap = UtilHttp.getParameterMap(request);
+	    
+	    Debug.logInfo("in" + module + " - paramMap is: " + paramMap,module);
+	    Debug.logInfo("in" + module + " locale is: " + locale,module);
+	    Debug.logInfo("in" + module + " delegator is: " + delegator.getDelegatorName(), module);
+	    Debug.logInfo("in" + module + " tenantId is: " + delegator.getDelegatorTenantId(), module);
+	    String orderId = request.getParameter("transactionid");
+	    Debug.logInfo("in" + module + " orderId is: " + orderId,module);
+	    
+	    // get the order header
+	    GenericValue orderHeader = null;
+	    try {
+	        orderHeader = delegator.findOne("OrderHeader", UtilMisc.toMap("orderId", orderId), false);
+	    } catch (GenericEntityException e) {
+	        Debug.logError(e, "Cannot get the order header for order: " + orderId, module);
+	        request.setAttribute("_ERROR_MESSAGE_", UtilProperties.getMessage(resourceErr, "MultisafePayEvents.problemsGettingOrderHeader", locale));
+	        return "error";
+	    }
+	 // get the order total
+	    BigDecimal bd =  new BigDecimal("100.0");
+	    bd.setScale(0);
+	    bd.stripTrailingZeros();
+	    String orderTotalLong = orderHeader.getBigDecimal("grandTotal").multiply(bd).toPlainString();
+	    int index_point = orderTotalLong.indexOf(".");
+	    orderTotalLong = orderTotalLong.substring(0, index_point);
+	    String orderTotal = orderHeader.getBigDecimal("grandTotal").toPlainString();
+	    String currencyUom = orderHeader.getString("currencyUom");
+	    
+	    // attempt to start a transaction
+	    boolean okay = true;
+	    boolean beganTransaction = false;
+	    
+	    try {
+	        beganTransaction = TransactionUtil.begin();
+	        okay = OrderChangeHelper.approveOrder(dispatcher, userLogin, orderId);
+	        
+	        Debug.logInfo("okay is: " + okay,module);
+	        
+	        if (okay) {
+	            // set the payment preference
+	            okay = setPaymentPreferences(delegator, dispatcher, userLogin, orderId, request, orderTotal);
+	        }
+	    } catch (Exception e) {
+	        String errMsg = "Error handling multisafepay redirect";
+	        Debug.logError(e, errMsg, module);
+	        try {
+	            TransactionUtil.rollback(beganTransaction, errMsg, e);
+	        } catch (GenericTransactionException gte2) {
+	            Debug.logError(gte2, "Unable to rollback transaction", module);
+	        }
+	    } finally {
+	        if (!okay) {
+	            try {
+	                TransactionUtil.rollback(beganTransaction, "Failure in processing multisafepay redirect", null);
+	            } catch (GenericTransactionException gte) {
+	                Debug.logError(gte, "Unable to rollback transaction", module);
+	            }
+	        } else {
+	            try {
+	                TransactionUtil.commit(beganTransaction);
+	            } catch (GenericTransactionException gte) {
+	                Debug.logError(gte, "Unable to commit transaction", module);
+	            }
+	        }
+	    }
+	    if (okay) {
+	        // attempt to release the offline hold on the order (workflow)
+	          OrderChangeHelper.releaseInitialOrderHold(dispatcher, orderId);
+	    }
+	    request.setAttribute("orderId", orderId);
+	    return "success";
+	}
+	
+	private static boolean setPaymentPreference(LocalDispatcher dispatcher, GenericValue userLogin, GenericValue paymentPreference, HttpServletRequest request, String orderTotal) {
         Locale locale = UtilHttp.getLocale(request);
         String paymentType = "Betaling klant";
         String paymentAmount = orderTotal;
@@ -238,7 +221,7 @@ public class MultiSafepayRedirect {
         // create a payment record too
         Map <String, Object> results = null;
         try {
-            String comment = UtilProperties.getMessage(resource, "PaymentTransactionViaMultiSafepay", locale);
+            String comment = UtilProperties.getMessage(oMultiSafepayResource, "PaymentTransactionViaMultiSafepay", locale);
             results = dispatcher.runSync("createPaymentFromPreference", UtilMisc.toMap("userLogin", userLogin,
                     "orderPaymentPreferenceId", paymentPreference.get("orderPaymentPreferenceId"), "comments", comment));
         } catch (GenericServiceException e) {
@@ -254,4 +237,28 @@ public class MultiSafepayRedirect {
         }
         return true;
     }
+
+	private static boolean setPaymentPreferences(Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin, String orderId, HttpServletRequest request, String orderTotal) {
+        Debug.logVerbose("Setting payment preferences..", module);
+        List <GenericValue> paymentPrefs = null;
+        try {
+            Map <String, String> paymentFields = UtilMisc.toMap("orderId", orderId, "statusId", "PAYMENT_NOT_RECEIVED");
+            paymentPrefs = delegator.findByAnd("OrderPaymentPreference", paymentFields, null, false);
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Cannot get payment preferences for order #" + orderId, module);
+            return false;
+        }
+        if (paymentPrefs.size() > 0) {
+            Iterator <GenericValue> i = paymentPrefs.iterator();
+            while (i.hasNext()) {
+                GenericValue pref = i.next();
+                boolean okay = setPaymentPreference(dispatcher, userLogin, pref, request, orderTotal);
+                if (!okay)
+                    return false;
+            }
+        }
+        return true;
+    }
+	
 }
+
