@@ -14,12 +14,17 @@ For more information on MultiSafepay, visit [their site, here](http://www.multiS
 ![GiftCarts](https://www.multisafepay.com/fileadmin/_processed_/csm_giftcards-nw_65d7099f7d.png "Gift Cards")
 ![GiroPay](https://www.multisafepay.com/fileadmin/user_upload/giropay-teaser.png "GiroPay")
 ![iDeal](https://www.multisafepay.com/fileadmin/user_upload/ideal-teaser.png "iDeal")&nbsp;
+![Klarna](https://cdn.klarna.com/1.0/shared/image/generic/logo/sv_se/basic/blue-black.png?width=200 "Klarna")&nbsp;
 ![Maestro](https://www.multisafepay.com/fileadmin/user_upload/maestro-teaser.png "Maestro")
 ![Mastercard](https://www.multisafepay.com/fileadmin/user_upload/mastercard-teaser.png "Mastercard")
 ![PayAfterDelivery](https://www.multisafepay.com/fileadmin/_processed_/csm_payafterdelivery-nw_357ce0a537.png "Pay After Delivery")
 ![PayPal](https://www.multisafepay.com/fileadmin/user_upload/paypal-teaser.png "PayPal")
 ![Sofort Banking](https://www.multisafepay.com/fileadmin/user_upload/sofort-teaser.png "Sofort Banking")
 ![Visa](https://www.multisafepay.com/fileadmin/user_upload/visa-teaser.png "Visa")
+
+##Countries available
+MultiSafepay is available in following countries:
+Austria, Belgium, Denmark, Finland, France, Germany, Italy, Netherlands, Norway, Poland, Spain, Sweden, United Kingdom.
 
 ##Development
 Just put the following in the svn:externals properties of the hot-deploy folder of your OFBiz implementation for a checkout:
