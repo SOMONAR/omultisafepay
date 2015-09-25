@@ -59,7 +59,7 @@ public class MultiSafepayClient {
     public static final String resource = "AccountingUiLabels";
     public static final String resourceErr = "AccountingErrorUiLabels";
     public static final String commonResource = "CommonUiLabels";
-    public static final string oMultiSafepayResource = "omultisafepay-UiLabels";
+    public static final String oMultiSafepayResource = "omultisafepay-UiLabels";
     
     /** Initiate MultisafePayEvents Request 
      * @throws IOException */
