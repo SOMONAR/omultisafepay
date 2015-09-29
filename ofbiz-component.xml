@@ -58,5 +58,6 @@
         server="default-server"
         location="webapp/omultisafepay"
         base-permission="OFBTOOLS,omultisafepay"
+        menu-name="secondary"
         mount-point="/omultisafepay"/>
 </ofbiz-component>
