@@ -17,13 +17,13 @@
  -->
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
     <property key="omultisafepayApplication">
-        <value xml:lang="en">MultiSafepay</value>
+        <value xml:lang="en">MultiSafepay Integration</value>
     </property>
     <property key="omultisafepayCompanyName">
         <value xml:lang="en">omultisafepay</value>
     </property>
     <property key="omultisafepayCompanySubtitle">
-        <value xml:lang="en">An Apache OFBiz(tm) Component</value>
+        <value xml:lang="en">A Hot-Deploy Component</value>
     </property>
     <property key="omultisafepayViewPermissionError">
         <value xml:lang="en">You are not allowed to view this page.</value>
