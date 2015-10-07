@@ -73,7 +73,7 @@ public class MultiSafepayClient {
         
         Map<String,Object> paramMap = UtilHttp.getParameterMap(request);
         
-        Debug.logInfo("in " + module + " - paramMap is: " + paramMap,module);
+        Debug.logInfo("in " + module + " - cancelResponse - paramMap is: " + paramMap,module);
         Debug.logInfo("in " + module + " locale is: " + locale,module);
         Debug.logInfo("in " + module + " delegator is: " + delegator.getDelegatorName(), module);
         Debug.logInfo("in " + module + " tenantId is: " + delegator.getDelegatorTenantId(), module);
@@ -96,7 +96,7 @@ public class MultiSafepayClient {
         
         Map<String,Object> paramMap = UtilHttp.getParameterMap(request);
         
-        Debug.logInfo("in " + module + " - paramMap is: " + paramMap,module);
+        Debug.logInfo("in " + module + " - notifyResponse - paramMap is: " + paramMap,module);
         Debug.logInfo("in " + module + " locale is: " + locale,module);
         Debug.logInfo("in " + module + " delegator is: " + delegator.getDelegatorName(), module);
         Debug.logInfo("in " + module + " tenantId is: " + delegator.getDelegatorTenantId(), module);
@@ -116,7 +116,7 @@ public class MultiSafepayClient {
         
         Map<String,Object> paramMap = UtilHttp.getParameterMap(request);
         
-        Debug.logInfo("in " + module + " - paramMap is: " + paramMap,module);
+        Debug.logInfo("in " + module + " - redirectResponse - paramMap is: " + paramMap,module);
         Debug.logInfo("in " + module + " locale is: " + locale,module);
         Debug.logInfo("in " + module + " delegator is: " + delegator.getDelegatorName(), module);
         Debug.logInfo("in " + module + " tenantId is: " + delegator.getDelegatorTenantId(), module);
