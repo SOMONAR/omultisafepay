@@ -33,5 +33,7 @@ omultisafepay         https://github.com/ORRTIZ/omultisafepay/trunk
 
 After having updated the hot-deploy folder (to execute the checkout from the repository), you'll need to build OFBiz again (./ant build) and load the seed, seed-initial and  - optionally- demo datasets.
 
+## Implementation
+Instructions on how to implement can be found here: https://github.com/ORRTIZ/omultisafepay/wiki/How-to-implement
 ##Issues
 For an overview of open and closed issue, see: [https://github.com/ORRTIZ/omultisafepay/issues](https://github.com/ORRTIZ/omultisafepay/issues)
