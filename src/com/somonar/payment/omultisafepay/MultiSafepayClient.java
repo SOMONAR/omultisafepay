@@ -85,7 +85,6 @@ public class MultiSafepayClient {
         return "success";
     }
     
-    
     public static String notifyResponse (HttpServletRequest request, HttpServletResponse response) throws IOException {
         String orderId = request.getParameter("transactionid");
         
@@ -289,6 +288,5 @@ public class MultiSafepayClient {
         }
         return true;
     }
-    
 }
 
