@@ -23,7 +23,7 @@
         <value xml:lang="en">omultisafepay</value>
     </property>
     <property key="omultisafepayCompanySubtitle">
-        <value xml:lang="en">A Hot-Deploy Component</value>
+        <value xml:lang="en">An ORRTIZ Component for  Apache OFBiz(tm)</value>
     </property>
     <property key="omultisafepayViewPermissionError">
         <value xml:lang="en">You are not allowed to view this page.</value>
