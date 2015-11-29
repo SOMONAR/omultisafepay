@@ -17,16 +17,27 @@
  -->
 <entity-engine-xml>
     
-    <PaymentMethodType description="MultiSafepay (EXT)" paymentMethodTypeId="EXT_OMULTISAFEPAY"/>
+    <Enumeration description="Payment Notification Page" enumCode="PAY_NOTIFY" enumId="PRDS_PAY_NOTIFY" enumTypeId="PRDS_EMAIL" sequenceId="21"/>
+    <Enumeration description="Payment Redirect Page" enumCode="PAY_REDIRECT" enumId="PRDS_PAY_REDIRECT" enumTypeId="PRDS_EMAIL" sequenceId="22"/>
+    <Enumeration description="Payment Cancel Page" enumCode="PAY_CANCEL" enumId="PRDS_PAY_CANCEL" enumTypeId="PRDS_EMAIL" sequenceId="23"/>
+    
+    <PaymentMethodType description="MultiSafepay (EXT)" 
+        paymentMethodTypeId="EXT_omultisafepay"/>
     
     <PaymentGatewayConfigType 
-        paymentGatewayConfigTypeId="EXT_OMULTISAFEPAY" 
+        paymentGatewayConfigTypeId="EXT" 
         hasTable="N" 
-        description="MultiSafepay Payment Gateway"/>
-        
+        description="External Gateway Configuration"/>
+    
+    <PaymentGatewayConfigType 
+        paymentGatewayConfigTypeId="omultisafepay" 
+        hasTable="N" 
+        parentTypeId="EXT"
+        description="MultiSafepay Payment Gateway Configuration"/>
+    
     <PaymentGatewayConfig 
-        paymentGatewayConfigId="OMULTISAFEPAY_CONFIG" 
-        paymentGatewayConfigTypeId="EXT_OMULTISAFEPAY" 
+        paymentGatewayConfigId="omultisafepay" 
+        paymentGatewayConfigTypeId="omultisafepay" 
         description="MultiSafepay Config"/>
     
 </entity-engine-xml>
