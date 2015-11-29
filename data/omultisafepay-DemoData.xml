@@ -33,19 +33,4 @@
         paymentServiceTypeEnumId="PRDS_PAY_EXTERNAL" 
         productStoreId="9000"/>
         
-    <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_REDIRECT" 
-        bodyScreenLocation="${paymentMethodTypeId}-redirect" 
-        subject="Store - Payment Transaction Redirect Uri" contentType="URI"
-        />
-    
-    <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_CANCEL" 
-        bodyScreenLocation="${paymentMethodTypeId}-cancel" 
-        subject="Store - Payment Transaction Cancellation Uri" contentType="URI"
-        />
-    
-    <ProductStoreEmailSetting productStoreId="9000" emailType="PRDS_PAY_NOTIFY" 
-        bodyScreenLocation="${paymentMethodTypeId}-notify" 
-        subject="Store - Payment Transaction Notification Uri" contentType="URI"
-        />
-    
 </entity-engine-xml>
