@@ -73,6 +73,15 @@ Debug.logInfo(logPrefix + "hostName = " + hostName,module);
 String apiRequest = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'apiRequest.test', delegator);
 Debug.logInfo(logPrefix + "hostProtocol = " + apiRequest,module);
 
+String defaultRedirectUrl = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'defaultRedirectUrl', delegator);
+Debug.logInfo(logPrefix + "hostProtocol = " + defaultRedirectUrl ,module);
+
+String defaultNotficationUrl = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'defaultNotficationUrl', delegator);
+Debug.logInfo(logPrefix + "hostProtocol = " + defaultNotficationUrl ,module);
+
+String defaultCancelUrl = EntityUtilProperties.getSystemPropertyValue(systemResourceId, 'defaultCancelUrl', delegator);
+Debug.logInfo(logPrefix + "hostProtocol = " + defaultCancelUrl ,module);
+
 String requestUrl = hostProtocol + '://' + hostName + apiRequest
 Debug.logInfo(logPrefix + "requestUrl = " + requestUrl,module);
 
@@ -120,9 +129,9 @@ String productStoreId = orh.getProductStoreId()
 Debug.logInfo(logPrefix + "productStoreId = " + productStoreId,module);
 
 // get the urls to pass along
-notificationUrl = 'notificationUrl'
-redirectUrl = 'redirectUrl'
-cancelUrl = 'cancelUrl'
+notificationUrl = 'notificationUrl';
+redirectUrl = 'redirectUrl';
+cancelUrl = 'cancelUrl';
 
 //building the payment Options
 webSiteUrl = (String) context.get("webSiteUrl");
@@ -133,22 +142,18 @@ Debug.logInfo(logPrefix + "_SERVER_ROOT_URL_ = " + sru,module);
 String cp = parameters._CONTROL_PATH_;
 Debug.logInfo(logPrefix + "_CONTROL_PATH_ = " + cp,module);
 
-storePage = from("ProductStoreEmailSetting").where("productStoreId", productStoreId, "emailType", "PRDS_PAY_NOTIFY" ).queryOne()
-uri = storePage.bodyScreenLocation
-notificationUrl = sru + cp +"/" + uri
-storePage = from("ProductStoreEmailSetting").where("productStoreId", productStoreId, "emailType", "PRDS_PAY_REDIRECT" ).queryOne()
-uri = storePage.bodyScreenLocation
-redirectUrl = sru + cp +"/" + uri
-storePage = from("ProductStoreEmailSetting").where("productStoreId", productStoreId, "emailType", "PRDS_PAY_CANCEL" ).queryOne()
-uri = storePage.bodyScreenLocation
-cancelUrl = sru + cp +"/" + uri
+notificationUrl = sru + cp +"/" + defaultNotficationUrl;
+
+redirectUrl = sru + cp +"/" + defaultRedirectUrl;
+
+cancelUrl = sru + cp +"/" + defaultCancelUrl;
 
 String jsonPaymentOptions = 
         "{" +
         "\"notification_url\":\"" + notificationUrl +"\" ," +
         "\"redirect_url\":\"" + redirectUrl +"\" ," +
         "\"cancel_url\":\"" + cancelUrl + "\"" +
-        "}"
+        "}";
 Debug.logInfo(logPrefix + "jsonPaymentOptions = " + jsonPaymentOptions,module);
 
 placingParty = orh.getPlacingParty();
