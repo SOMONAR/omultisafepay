@@ -1,3 +1,7 @@
+<!--- © 2015 Copyright Somonar B.V. 
+ <!-- This page is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>-->
+
+
 ![OFBiz](http://ofbiz.apache.org/images/logo.png "Apache OFBiz")&nbsp;![MultiSafePay](https://www.multisafepay.com/images/multilogo.gif "MultiSafepay")
 
 # omultisafepay
@@ -37,3 +41,11 @@ After having updated the hot-deploy folder (to execute the checkout from the rep
 Instructions on how to implement can be found here: https://github.com/ORRTIZ/omultisafepay/wiki/How-to-implement
 ##Issues
 For an overview of open and closed issue, see: [https://github.com/ORRTIZ/omultisafepay/issues](https://github.com/ORRTIZ/omultisafepay/issues)
+
+
+
+## License
+© 2015 Copyright Somonar B.V.
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nd/4.0/88x31.png" /></a><br />This page is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nd/4.0/">Creative Commons Attribution-NoDerivatives 4.0 International License</a>.
+
