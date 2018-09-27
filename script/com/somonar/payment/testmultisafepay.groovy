@@ -48,11 +48,6 @@ Debug.logInfo(logPrefix + " --------------------------",module);
 
 Debug.logInfo(logPrefix + " set generics",module);
 
-String systemResourceId="omultisafepay"
-String resource = "omultisafepay-UiLabels";
-String resourceErr = "omultisafepay-ErrorUiLabels";
-String commonResource = "CommonUiLabels";
-Locale locale = (Locale) context.get("locale");
 Debug.logInfo(logPrefix + " locale = " + locale,module);
 
 Debug.logInfo(logPrefix + " get configuration variables",module);
