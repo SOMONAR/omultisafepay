@@ -29,7 +29,7 @@
 
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.${activeApp}CompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.${activeApp}CompanySubtitle" global="true"/>
-                
+               
                 <set field="layoutSettings.javaScripts[]" value="/${activeApp}/images/js/${activeApp}.js" global="true"/>
                 <set field="layoutSettings.styleSheets[]" value="/${activeApp}/images/css/${activeApp}.css" global="true"/>
                 
